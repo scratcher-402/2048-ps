@@ -200,13 +200,13 @@ function Find-Zeroes {
 
 function Add-Elem {
 	Find-Zeroes
-	if ($zeroes.Count -eq 0) {
+	if ($global:zeroes.Count -eq 0) {
 		return $false
 	}
-	if ($zeroes.Count -eq 1) {
-		$ind = $zeroes[0]
+	if ($global:zeroes.Count -eq 1) {
+		$ind = $global:zeroes[0]
 	} else {
-		$ind = Get-Random -InputObject $zeroes
+		$ind = Get-Random $global:zeroes
 	}
 	$elem = 1
 	$choice = Get-Random -Minimum 0 -Maximum 3
@@ -233,7 +233,7 @@ function Make-Step {
 function Run-MainLoop {
 	$w = [Console]::WindowWidth
 	$h = [Console]::WindowHeight
-	if ($w -lt 30 || $h -lt 15) {
+	if ($w -lt 30 -or $h -lt 15) {
 		Write-Host "Your console is too small for this game."
 		return
 	}
